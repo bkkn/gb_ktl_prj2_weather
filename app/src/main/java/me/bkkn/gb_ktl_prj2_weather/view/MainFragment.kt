@@ -26,7 +26,7 @@ class MainFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
-        binding.button.setOnClickListener { viewModel.getLiveData().postValue(Any()) }
+        binding.button.setOnClickListener { viewModel.getDataFromLocalSource() }
         return binding.root
         // return inflater.inflate(R.layout.fragment_main, container, false)
     }
