@@ -6,6 +6,7 @@ import me.bkkn.gb_ktl_prj2_weather.data.AppState
 import me.bkkn.gb_ktl_prj2_weather.data.IRepository
 import me.bkkn.gb_ktl_prj2_weather.data.Repository
 import java.lang.Thread.sleep
+import kotlin.random.Random
 
 class MainViewModel(
     private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
@@ -22,8 +23,12 @@ class MainViewModel(
     private fun getDataFromLocalSource() {
         liveDataToObserve.postValue(AppState.Loading)
         Thread {
-            sleep(5000)
-            liveDataToObserve.postValue(AppState.Success(repository.getWeatherFromLocalStorage()))
+            sleep(1000)
+            val rnd = Random.nextBoolean();
+            if (rnd)
+                liveDataToObserve.postValue(AppState.Success(repository.getWeatherFromLocalStorage()))
+            else
+                liveDataToObserve.postValue(AppState.Error(Throwable()))
         }.start()
     }
 
