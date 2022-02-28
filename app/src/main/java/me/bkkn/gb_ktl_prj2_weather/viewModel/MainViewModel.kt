@@ -1,4 +1,4 @@
-package me.bkkn.gb_ktl_prj2_weather.ui.main
+package me.bkkn.gb_ktl_prj2_weather.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

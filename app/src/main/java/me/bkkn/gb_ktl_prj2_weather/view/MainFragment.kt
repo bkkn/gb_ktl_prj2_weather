@@ -1,4 +1,4 @@
-package me.bkkn.gb_ktl_prj2_weather.ui.main
+package me.bkkn.gb_ktl_prj2_weather.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import me.bkkn.gb_ktl_prj2_weather.databinding.FragmentMainBinding
+import me.bkkn.gb_ktl_prj2_weather.viewModel.MainViewModel
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null

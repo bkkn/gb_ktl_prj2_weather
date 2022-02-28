@@ -3,7 +3,7 @@ package me.bkkn.gb_ktl_prj2_weather
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import me.bkkn.gb_ktl_prj2_weather.databinding.ActivityMainBinding
-import me.bkkn.gb_ktl_prj2_weather.ui.main.MainFragment
+import me.bkkn.gb_ktl_prj2_weather.view.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
