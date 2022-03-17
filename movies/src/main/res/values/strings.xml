@@ -9,4 +9,5 @@
     <string name="_70">_70</string>
     <string name="popularity">popularity</string>
     <string name="description">description</string>
+    <string name="film_description">Film Description:</string>
 </resources>

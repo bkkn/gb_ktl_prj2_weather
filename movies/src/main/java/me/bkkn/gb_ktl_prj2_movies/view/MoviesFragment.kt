@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.snackbar.Snackbar
 import me.bkkn.gb_ktl_prj2_movies.R
 import me.bkkn.gb_ktl_prj2_movies.data.AppState
+import me.bkkn.gb_ktl_prj2_movies.data.Film
 import me.bkkn.gb_ktl_prj2_movies.databinding.FragmentMoviesBinding
 import me.bkkn.gb_ktl_prj2_movies.viewmodel.MainViewModel
 
@@ -37,25 +40,38 @@ class MoviesFragment : Fragment() {
             renderData(it)
         }
         viewModel.getLiveData().observe(viewLifecycleOwner, observer)
+        viewModel.getFilmFromLocalSource()
     }
 
     private fun renderData(appState: AppState) {
         when (appState) {
             is AppState.Success -> {
-
+                showLoading(false)
+                val filmData = appState.film
+                setData(filmData)
             }
             is AppState.Loading -> {
                 showLoading(true)
             }
             is AppState.Error -> {
-                
+                showLoading(false)
+                Snackbar.make(binding.mainView, "Error", Snackbar.LENGTH_INDEFINITE)
+                    .setAction("reload") { viewModel.getFilmFromLocalSource() }
+                    .show()
             }
         }
 
     }
 
-    private fun showLoading(b: Boolean) {
+    private fun setData(filmData: Film) {
+        binding.filmName.text = filmData.title
+        binding.filmGenre.text =filmData.genre
+        binding.filmDescription.text =filmData.description
+    }
 
+    private fun showLoading(isShow: Boolean) {
+        binding.loadingLayout.isVisible = isShow
+        binding.mainView.isVisible = !isShow
     }
 
     override fun onDestroyView() {
