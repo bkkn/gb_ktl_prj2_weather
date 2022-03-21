@@ -14,6 +14,7 @@ import me.bkkn.gb_ktl_prj2_movies.data.AppState
 import me.bkkn.gb_ktl_prj2_movies.data.Film
 import me.bkkn.gb_ktl_prj2_movies.databinding.FragmentMoviesBinding
 import me.bkkn.gb_ktl_prj2_movies.viewmodel.MainViewModel
+import java.security.cert.CRLException
 
 class MoviesFragment : Fragment() {
 
@@ -29,7 +30,7 @@ class MoviesFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentMoviesBinding.inflate(inflater,container, false)
+        _binding = FragmentMoviesBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -55,18 +56,25 @@ class MoviesFragment : Fragment() {
             }
             is AppState.Error -> {
                 showLoading(false)
-                Snackbar.make(binding.mainView, "Error", Snackbar.LENGTH_INDEFINITE)
-                    .setAction("reload") { viewModel.getFilmFromLocalSource() }
-                    .show()
+                binding.mainView.createAndShow(
+                    "Error",
+                    "reload",
+                    { viewModel.getFilmFromLocalSource() })
             }
         }
+    }
 
+    private fun View.createAndShow(
+        text: String, actionText: String, action: (View) -> Unit,
+        length: Int = Snackbar.LENGTH_INDEFINITE
+    ) {
+        Snackbar.make(this, text, length).setAction(actionText, action).show()
     }
 
     private fun setData(filmData: Film) {
         binding.filmName.text = filmData.title
-        binding.filmGenre.text =filmData.genre
-        binding.filmDescription.text =filmData.description
+        binding.filmGenre.text = filmData.genre
+        binding.filmDescription.text = filmData.description
     }
 
     private fun showLoading(isShow: Boolean) {
