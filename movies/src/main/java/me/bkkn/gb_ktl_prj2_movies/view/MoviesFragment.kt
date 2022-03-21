@@ -57,8 +57,8 @@ class MoviesFragment : Fragment() {
             is AppState.Error -> {
                 showLoading(false)
                 binding.mainView.createAndShow(
-                    "Error",
-                    "reload",
+                    R.string.snackbar_text_error,
+                    R.string.action_text_reload,
                     { viewModel.getFilmFromLocalSource() })
             }
         }
@@ -69,6 +69,13 @@ class MoviesFragment : Fragment() {
         length: Int = Snackbar.LENGTH_INDEFINITE
     ) {
         Snackbar.make(this, text, length).setAction(actionText, action).show()
+    }
+
+    private fun View.createAndShow(
+        textId: Int, actionTextId: Int, action: (View) -> Unit,
+        length: Int = Snackbar.LENGTH_INDEFINITE
+    ) {
+        Snackbar.make(this, getString(textId), length).setAction(actionTextId, action).show()
     }
 
     private fun setData(filmData: Film) {
