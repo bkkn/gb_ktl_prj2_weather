@@ -79,14 +79,18 @@ class MoviesFragment : Fragment() {
     }
 
     private fun setData(filmData: Film) {
-        binding.filmName.text = filmData.title
-        binding.filmGenre.text = filmData.genre
-        binding.filmDescription.text = filmData.description
+        with(binding) {
+            filmGenre.text = filmData.genre
+            filmName.text = filmData.title
+            filmDescription.text = filmData.description
+        }
     }
 
     private fun showLoading(isShow: Boolean) {
-        binding.loadingLayout.isVisible = isShow
-        binding.mainView.isVisible = !isShow
+        with(binding) {
+            loadingLayout.isVisible = isShow
+            mainView.isVisible = !isShow
+        }
     }
 
     override fun onDestroyView() {
