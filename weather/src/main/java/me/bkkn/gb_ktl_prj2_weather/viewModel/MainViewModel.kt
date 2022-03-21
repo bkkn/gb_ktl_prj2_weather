@@ -1,5 +1,6 @@
-package com.als.gblesson2.viewmodel
+package me.bkkn.gb_ktl_prj2_weather.viewModel
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import me.bkkn.gb_ktl_prj2_weather.data.AppState
@@ -9,28 +10,29 @@ import java.lang.Thread.sleep
 import kotlin.random.Random
 
 class MainViewModel(
-    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
+    private val mutableLiveData: MutableLiveData<AppState> = MutableLiveData(),
     private val repository: IRepository = Repository()
 ) :
     ViewModel() {
 
-    fun getLiveData() = liveDataToObserve
+    val liveData: LiveData<AppState> get() = mutableLiveData
 
-    fun getWeatherFromLocalSource() = getDataFromLocalSource()
+    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
 
-    fun getWeatherFromRemoteSource() = getDataFromLocalSource()
+    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
 
-    private fun getDataFromLocalSource() {
-        liveDataToObserve.postValue(AppState.Loading)
+    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)
+
+    private fun getDataFromLocalSource(isRussian: Boolean) {
+        mutableLiveData.postValue(AppState.Loading)
         Thread {
             sleep(1000)
-            val rnd = Random.nextBoolean();
-            if (rnd)
-                liveDataToObserve.postValue(AppState.Success(repository.getWeatherFromLocalStorage()))
-            else
-                liveDataToObserve.postValue(AppState.Error(Throwable()))
+            mutableLiveData.postValue(
+                AppState.Success(
+                    if (isRussian) repository.getWeatherFromLocalStorageRus()
+                    else repository.getWeatherFromLocalStorageWorld()
+                )
+            )
         }.start()
     }
-
-
 }
