@@ -7,11 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.Fragment
+import com.google.android.material.snackbar.Snackbar
 import me.bkkn.gb_ktl_prj2_weather.R
 import me.bkkn.gb_ktl_prj2_weather.data.Weather
 import me.bkkn.gb_ktl_prj2_weather.data.WeatherDTO
 import me.bkkn.gb_ktl_prj2_weather.data.WeatherLoader
 import me.bkkn.gb_ktl_prj2_weather.databinding.FragmentDetailBinding
+import me.bkkn.gb_ktl_prj2_weather.showSnackBar
+
+fun onLoadFailure(view: View) {
+
+}
 
 class DetailsFragment : Fragment() {
 
@@ -26,6 +32,7 @@ class DetailsFragment : Fragment() {
             }
 
             override fun onFailed(throwable: Throwable) {
+                Snackbar.make(view!!, "load failure", Snackbar.LENGTH_INDEFINITE).show()
             }
 
         }
