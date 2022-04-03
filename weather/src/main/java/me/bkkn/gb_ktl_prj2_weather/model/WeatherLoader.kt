@@ -1,4 +1,4 @@
-package me.bkkn.gb_ktl_prj2_weather.data
+package me.bkkn.gb_ktl_prj2_weather.model
 
 import android.os.Build
 import android.os.Handler

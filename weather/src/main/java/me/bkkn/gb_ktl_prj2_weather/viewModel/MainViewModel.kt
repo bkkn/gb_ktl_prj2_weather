@@ -3,11 +3,9 @@ package me.bkkn.gb_ktl_prj2_weather.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import me.bkkn.gb_ktl_prj2_weather.data.AppState
-import me.bkkn.gb_ktl_prj2_weather.data.IRepository
-import me.bkkn.gb_ktl_prj2_weather.data.Repository
+import me.bkkn.gb_ktl_prj2_weather.model.IRepository
+import me.bkkn.gb_ktl_prj2_weather.model.Repository
 import java.lang.Thread.sleep
-import kotlin.random.Random
 
 class MainViewModel(
     private val mutableLiveData: MutableLiveData<AppState> = MutableLiveData(),

@@ -1,4 +1,4 @@
-package me.bkkn.gb_ktl_prj2_weather.data
+package me.bkkn.gb_ktl_prj2_weather.model
 
 class Repository : IRepository {
     override fun getWeatherFromServer(): Weather {
