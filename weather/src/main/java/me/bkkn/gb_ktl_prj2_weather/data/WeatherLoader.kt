@@ -13,8 +13,8 @@ import java.net.URL
 import java.util.stream.Collectors
 import javax.net.ssl.HttpsURLConnection
 
-private const val WEATHER_API_KEY = "7838458d-c23e-4443-8d5a-2d90844d73af" // test tariff
-//2fefea651f90ea8fe7cba508a8c64a10
+private const val WEATHER_API_KEY = BuildConfig.WEATHER_API_KEY
+
 class WeatherLoader(private val listener: WeatherLoaderListener, private val lat: Double, private val lon: Double) {
     interface WeatherLoaderListener {
         fun onLoaded(weatherDTO: WeatherDTO)

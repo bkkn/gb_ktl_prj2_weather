@@ -47,7 +47,7 @@ class FilmLoader(
                     // преобразование ответа от сервера (JSON) в модель данных (WeatherDTO)
                     val filmDTO: FilmDTO =
                         Gson().fromJson(getLines(bufferedReader), FilmDTO::class.java)
-                    handler.post { listener.onLoaded(FilmDTO) }
+                    handler.post { listener.onLoaded(filmDTO) }
                 } catch (e: Exception) {
                     Log.e("", "Fail connection", e)
                     e.printStackTrace()

@@ -1,7 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+//    id 'kotlin-android-extensions'
+    id("kotlin-parcelize")
 }
 
 android {
@@ -34,12 +35,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-//    buildTypes.each {
-//        Properties properties = new Properties()
-//        properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
-//        def apiKey  = properties.getProperty("yandex_key", "")
-//        it.buildConfigField "String", "WEATHER_API_KEY", apiKey
-//    }
+    buildTypes.each {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file("apikey.properties").newDataInputStream())
+        def apiKey  = properties.getProperty("yandex_key", "")
+        it.buildConfigField "String", "WEATHER_API_KEY", apiKey
+    }
 }
 
 dependencies {
