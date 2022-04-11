@@ -17,6 +17,7 @@ import me.bkkn.gb_ktl_prj2_weather.model.FactDTO
 import me.bkkn.gb_ktl_prj2_weather.model.Weather
 import me.bkkn.gb_ktl_prj2_weather.model.WeatherDTO
 import me.bkkn.gb_ktl_prj2_weather.databinding.FragmentDetailsBinding
+import me.bkkn.gb_ktl_prj2_weather.model.WeatherLoader
 
 fun onLoadFailure(view: View) {
 
